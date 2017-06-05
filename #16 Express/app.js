@@ -5,16 +5,23 @@ var app = express();
 // set view engine - ejs
 app.set('view engine', 'ejs');
 
+// set middleware
+// any request to localhost:3000/assets is going to map to static folder now
+app.use('/assets', express.static('assets'));
 app.get('/', function(req, res){
   // send a message
   // res.send('This is the homepage');
   
   // send a file
-  res.sendFile(__dirname + '/index.html');
+  // res.sendFile(__dirname + '/index.html');
+  
+  res.render('index');
 });
 
 app.get('/contact', function(req, res) {
-  res.sendFile(__dirname + '/contact.html');
+  // res.sendFile(__dirname + '/contact.html');
+   
+  res.render('contact');
 });
 
 // dynamic route parameters
