@@ -11,23 +11,24 @@ app.use('/assets', express.static('assets'));
 app.get('/', function(req, res){
   // send a message
   // res.send('This is the homepage');
-  
+
   // send a file
   // res.sendFile(__dirname + '/index.html');
-  
+
   res.render('index');
 });
 
 app.get('/contact', function(req, res) {
   // res.sendFile(__dirname + '/contact.html');
-   
-  res.render('contact');
+
+  // console.log(req.query);
+  res.render('contact', {qs: req.query});
 });
 
 // dynamic route parameters
 app.get('/profile/:id', function(req, res) {
   // res.send('Requested to see profile with id of : ' + req.params.id);
-  
+
   // dynamic rendering of HTML page
   var data = {age: 29, job: 'ninja', hobbies: ['eating', 'fighting', 'fishing']};
   res.render('profile', {id: req.params.id, data: data});
